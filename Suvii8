@@ -1,0 +1,35 @@
+import { Component } from '@angular/core';
+import { CommonModule} from '@angular/common';
+@Component({
+selector: 'app-root',
+standalone: true,
+imports: [CommonModule],
+templateUrl: './app.component.html', styleurl: './app.component.css',
+export class AppComponent {
+loggeduser: string = "sohan";
+loggedpass: string = "sohan123"
+submitbtn(username: string, pass: string) {
+if (username 1= this.loggeduser) {
+alert user does not exists"
+else if (pass != this.loggedpass) {
+alert("wrong pass")
+} else {
+}
+alert("successfully logged in")
+}
+}
+}
+
+<div>
+<div>
+<div>
+<p>Username</p>
+<input type="text" #username required minlength="5">
+</div>
+<div>
+<p>password</p>
+<input type="password" #pass required minlength="8">
+</div>
+<button (click)="submitbtn(username.value, pass.value)">log in</button>
+</div>
+</div>
