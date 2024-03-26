@@ -1,0 +1,53 @@
+import { Component } from '@angular/core';
+@Component({
+selector: 'app-root',
+standalone: true,
+templateUrl: './app.component.html',
+styleUrls: ['./app.component.css'] 
+})
+export class AppComponent {
+result: number = 0;
+calculate(num1: string, num2: string, operator: string): void {
+const parsedNum1 = parseFloat(num1);
+const parsedNum2 = parseFloat(num2);
+switch (operator) {
+case '+':
+this.result = parsedNum1 + parsedNum2;
+break;
+case '-':
+this.result = parsedNum1 - parsedNum2;
+break;
+case '*':
+this.result = parsedNum1 * parsedNum2;
+break;
+case '/':
+this.result = parsedNum2 !== 0 ? parsedNum1 / parsedNum2 :NaN;
+break;
+default:
+this.result = 0;
+break;
+}}
+}
+app.component.html
+<div>
+<h2>SIMPLE CALCULATOR</h2>
+<label for ="num1">Number1: </label>
+<input id="num1" #num1Input type="number"/>
+<br/>
+<label for="num2">Number2: </label>
+<input id="num2" #num2Input type="number"/>
+<br/>
+<label for="operator">operator: </label>
+<select id="operator" #operatorInput>
+<option value="+">Plus(+)</option>
+<option value="-">Minus(-)</option>
+<option value="/">Division(/)</option>
+<option value="*">Multiplication(*)</option>
+</select>
+<br/>
+<button (click)="calculate(num1Input.value, 
+num2Input.value,operatorInput.value)">calculate</button>
+<br/>
+<label for="result">Result: </label>
+<input id="result" readonly [value]="result"/>
+</div>
