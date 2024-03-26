@@ -1,0 +1,45 @@
+2 Develop an Angular application that displays a list of shopping items. Allow users to add and remove items from 
+the list using directives and controllers.Note: The default values of items may be included in the program. 
+
+app.component.ts
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+@Component({
+selector: 'app-root',imports:[CommonModule],
+standalone: true,
+templateUrl: './app.component.html',
+styleUrl: './app.component.css'
+})
+
+export class AppComponent {
+shoppingItems:String[]=['Apple','Banana' ,'Orange','Milk','Chocolate Cake'];
+addItem(item:String):void{
+if(item &&! this .shoppingItems.includes(item)){
+this.shoppingItems.push(item);
+}
+}
+removeItem(item:String):void{
+const index=this.shoppingItems.indexOf(item);
+if (index> -1){
+this.shoppingItems.splice(index,1)
+}
+}
+}
+app.component.html
+<!-- app.component.html -->
+<div>
+<h2>SHOPPING LIST</h2>
+<ul>
+<li *ngFor="let item of shoppingItems">{{ item }}</li>
+</ul>
+</div>
+<div>
+<label for="newItem">Add item: </label>
+<input id="newItem" #newItemInput placeholder="Enter a new item" />
+<button (click)="addItem(newItemInput.value)">Add</button>
+</div>
+<div>
+<label for="removeItem">Remove item: </label>
+<input id="removeItem" #removeItemInput placeholder="Enter item to remove" />
+<button (click)="removeItem(removeItemInput.value)">Remove</button>
+</div>
