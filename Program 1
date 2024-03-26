@@ -1,0 +1,36 @@
+ANGULAR 
+
+1 Develop Angular JS program that allows user to input their first name and last name and display their full name. 
+
+Note: The default values for first name and last name may be included in the program. 
+
+
+app.component.ts
+import { Component } from '@angular/core';
+@Component({
+selector: 'app-root',
+standalone: true,
+templateUrl: './app.component.html',
+styleUrls: ['./app.component.css'],
+})
+export class AppComponent {
+firstName: string = '';
+lastName: string = '';
+fullName: string = '';
+displayFullName(firstName: string, lastName: string): void {
+this.fullName = `${firstName} ${lastName}`;
+}
+}
+
+app.component.html
+<div>
+<label for="firstName">First Name:</label>
+<input id="firstName" type="text" placeholder="Enter first name" #firstNameInput>
+<br>
+<label for="lastName">Last Name:</label>
+<input id="lastName" type="text" placeholder="Enter last name" #lastNameInput>
+<br>
+<button (click)="displayFullName(firstNameInput.value, lastNameInput.value)">Display 
+Full Name</button>
+<br>
+<p>Full Name: {{ fullName }}</p>
