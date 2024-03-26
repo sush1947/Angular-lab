@@ -1,0 +1,39 @@
+app.component.ts
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+@Component({
+selector: 'app-root',
+templateUrl: './app.component.html',
+styleUrls: ['./app.component.css'],
+standalone: true,
+imports:[CommonModule],
+})
+export class AppComponent {
+students: { name: string; USN: string; CGPA: string }[] = [
+{ name: 'Sanyuktha', USN: '4MT21CS145', CGPA: '8.94' },
+{ name: 'Swayam', USN: '4MT21CS146', CGPA: '8.54' },
+{ name: 'Sanjana', USN: '4MT21CS035', CGPA: '9.01' },
+{ name: 'veeraj', USN: '4MT21CS194', CGPA: '7.51' },
+{ name: 'leela', USN: '4MT21CSo22', CGPA: '6.78' },
+];
+displayedStudents: { name: string; USN: string; CGPA: string }[] = [];
+studentCount: number = 0;
+displayStudents(limit: string) {
+this.displayedStudents = this.students.slice(0, parseInt(limit));
+this.studentCount = this.displayedStudents.length;
+}
+}
+app.component.html
+<div>
+<h1>Student Details</h1>
+<label for="limitInput">Display Limit:</label>
+<input id="limitInput" type="number" placeholder="Enter limit" #displayLimit />
+<button (click)="displayStudents(displayLimit.value)">Display Students</button>
+<h3>Displayed Students</h3>
+<ul>
+<li *ngFor="let student of displayedStudents">
+{{ student.name }} ({{ student.USN }}) - CGPA: {{ student.CGPA }}
+</li>
+</ul>
+<h3>Student Count: {{ studentCount }}</h3>
+</div>
