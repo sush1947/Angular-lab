@@ -1,0 +1,34 @@
+app.component.ts
+import { Component } from '@angular/core';
+@Component({
+selector: 'app-root',
+standalone: true,
+templateUrl: './app.component.html',
+styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+result: any = "";
+factorial(num: number): number {
+if (num == 1) {
+return 1;
+} else {
+return num * this.factorial(num - 1);
+}
+}
+calculateFactorial(number: any) {
+this.result = this.factorial(number);
+}
+calculateSquare(number: any) {
+this.result = parseInt(number) * parseInt(number);
+}
+}
+app.component.html
+
+<div>
+<h1>CALCULATE FACTORIAL AND SQUARE</h1>
+<label for="numberInput">Enter the number: </label>
+<input type="number" id="numberInput" name="numberInput" #numberInput>
+<button (click)="calculateFactorial(numberInput.value)">Factorial</button>
+<button (click)="calculateSquare(numberInput.value)">Square</button>
+<p>Result: {{result}}</p>
+</div>
