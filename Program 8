@@ -1,0 +1,26 @@
+username: string = ''
+  password: string = ''
+  login(){
+    if(this.username=="mihir" && this.password=="1234567"){
+      alert("Login succesfulll")
+    }else{
+      alert("Wrong input")
+    }
+    this.username = ''
+    this.password = ''
+  }
+
+<div>
+  <h1>Login Form</h1>
+</div>
+<div>
+  <label for="">Username</label>
+  <input [(ngModel)]="username" type="text">
+</div>
+<div>
+  <label for="">Password</label>
+  <input [(ngModel)]="password" type="password">
+</div>
+<div>
+  <button (click)="login()">Login</button>
+</div>
